@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreateTypeProblemesTable extends Migration
+{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
+        Schema::create('type_problemes', function (Blueprint $table) {
+            $table->id("typ_id");
+            $table->string("typ_libelle");
+            $table->integer('dom_id');
+            $table->foreign('dom_id')->references("dom_id")->on("domaine_competences")->onDelete('cascade');
+            $table->timestamps();
+        });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('type_problemes');
+    }
+}
